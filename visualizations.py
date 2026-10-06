@@ -1,12 +1,11 @@
-"""
-Reads directly from dna_analysis.db (built by analysis.py)
-"""
+# Reads directly from dna_analysis_with_tm.db (built by analysis_biopython.py)
+
 import sqlite3
 import matplotlib.pyplot as plt
 import os
 
 os.makedirs("charts", exist_ok=True)
-conn = sqlite3.connect("dna_analysis.db")
+conn = sqlite3.connect("dna_analysis_with_tm.db")
 
 
 # 1. Average GC content by organism (bar chart)

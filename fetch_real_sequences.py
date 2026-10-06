@@ -41,8 +41,7 @@ def main():
         print(f"Fetching {organism} / {gene} ...")
         record = fetch_gene_sequence(organism, gene)
         if record is not None:
-            # Some mRNA records are long — trim to first 300bp so the
-            # dataset stays comparable in scale to the synthetic version
+            # Some mRNA records are long — trim to first 300bp 
             seq = str(record.seq)[:300]
             rows.append((f"REAL{i:03d}", organism, seq))
         time.sleep(0.4) 

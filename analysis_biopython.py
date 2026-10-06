@@ -10,9 +10,7 @@ def analyze_sequence(sequence: str) -> dict:
     gc_pct = round(gc_fraction(seq_obj) * 100, 2)
 
     # Tm_Wallace (2*(A+T) + 4*(G+C)) only works for short primers (<14bp) —
-    # it scales linearly with length and gives nonsense values for longer
-    # sequences. Tm_GC is the correct empirical formula for longer sequences,
-    # it accounts for GC% properly rather than just summing base counts.
+    # Tm_GC is the correct empirical formula for longer sequences,
     tm = round(mt.Tm_GC(seq_obj), 2)
 
     counts = {base: sequence.upper().count(base) for base in "ATGC"}
@@ -82,8 +80,6 @@ def build_database(results: list[dict], db_path: str = "dna_analysis.db"):
 
 
 if __name__ == "__main__":
-    # Uses the synthetic dataset by default. Swap to "data/real_sequences.csv"
-    # once you've run fetch_real_sequences.py successfully.
     raw = load_sequences("data/sequences.csv")
     results = analyze(raw)
     build_database(results)
